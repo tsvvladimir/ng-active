@@ -1,7 +1,8 @@
 import numpy as np
 from sklearn.pipeline import Pipeline
 from sklearn.datasets import fetch_20newsgroups
-from sklearn.linear_model import SGDClassifier
+#from sklearn.linear_model import SGDClassifier
+from sklearn.svm import LinearSVC
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.metrics import f1_score
@@ -21,16 +22,15 @@ twenty_test_target = twenty_test.target
 text_clf = Pipeline([
     ('vect', CountVectorizer()),
     ('tfidf',TfidfTransformer()),
-    ('clf', SGDClassifier())
+    ('clf', LinearSVC())
 ])
-'''
+
 #baseline
 
 text_clf.fit(twenty_train_data, twenty_train_target)
 predicted = text_clf.predict(twenty_test_data)
-#print "baseline f1 micro", f1_score(twenty_test_target, predicted, average='micro')
-'''
-print "baseline f1 micro 0.849309612321"
+print "baseline f1 micro", f1_score(twenty_test_target, predicted, average='micro')
+
 
 #add random elements strategy
 alpha = 100 #initial training set
@@ -73,5 +73,11 @@ for t in range(1, betha):
 
     text_clf.fit(twenty_cur_training_data, twenty_cur_training_target)
     predicted = text_clf.predict(twenty_test_data)
+    #print "len of test data", len(twenty_test_data)
+    #print "shape of decision_function onall test data", text_clf.decision_function(twenty_test_data).shape
     cur_score = f1_score(twenty_test_target, predicted, average='micro')
     print "train set", len(twenty_cur_training_data), "cur_score", cur_score
+    #print len(np.array([twenty_cur_training_data[0]]))
+    #print "decision_function", text_clf.decision_function(np.array([twenty_cur_training_data[0]]))
+    #print "predicted label for 0", text_clf.predict(np.array([twenty_cur_training_data[0]]))
+
