@@ -150,7 +150,9 @@ for t in range(1, betha):
 
     doc_score = {}
     for i in range(0, len(twenty_unlabeled_data)):
-        doc_score[i] = np.amax(confidence_scores[i])
+        #sort confidence_score[i], get 2 last elements, find absolute value of difference between the,
+        last_elems = (sorted(confidence_scores[i]))[-2:]
+        doc_score[i] = np.abs(last_elems[0] - last_elems[1])
 
     sorted_doc_score = sorted(doc_score.items(), key=operator.itemgetter(1))
 
