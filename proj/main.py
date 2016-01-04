@@ -11,6 +11,7 @@ import logging
 import sys
 import operator
 import math
+from sklearn.multiclass import OneVsRestClassifier
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s')
 
@@ -27,7 +28,7 @@ text_clf = Pipeline([
     ('clf', LinearSVC())
 ])
 
-'''
+
 #baseline
 
 text_clf.fit(twenty_train_data, twenty_train_target)
@@ -180,7 +181,7 @@ for t in range(1, betha):
     predicted = text_clf.predict(twenty_test_data)
     cur_score = f1_score(twenty_test_target, predicted, average='micro')
     print "(", len(twenty_cur_training_data), ", ", cur_score, ")"
-'''
+
 
 #range by maximum entropy
 print "range by maximum entropy"
@@ -200,6 +201,7 @@ print "(", len(twenty_cur_training_data), ", ", cur_score, ")"
 
 for t in range(1, betha):
     #sample_numbers = randint(0, len(twenty_unlabeled_data), gamma)
+    #print "try probabilities", text_clf.predict_proba(twenty_unlabeled_data).shape
     confidence_scores = text_clf.decision_function(twenty_unlabeled_data)
     #print len(twenty_unlabeled_data)
     #print confidence_scores.shape
