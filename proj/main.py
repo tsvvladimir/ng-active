@@ -1,3 +1,4 @@
+from __future__ import division
 import numpy as np
 from sklearn.pipeline import Pipeline
 from sklearn.datasets import fetch_20newsgroups
@@ -11,6 +12,7 @@ import logging
 import sys
 import operator
 import math
+
 from sklearn.multiclass import OneVsRestClassifier
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s')
@@ -185,6 +187,11 @@ for t in range(1, betha):
 
 #range by maximum entropy
 print "range by maximum entropy"
+
+
+def svm_val_proba(x):
+    return 1 / (1 + np.exp(-x))
+
 alpha = 100 #initial training set
 betha = 10 #number of iteration
 gamma = 50 #number of sampling
@@ -214,8 +221,9 @@ for t in range(1, betha):
         for j in confidence_scores[i]:
             #if j == 0:
             #    print "score is zero!"
-            print j
-            entr += j * math.log(j)
+            #print j
+            prob = svm_val_proba(j)
+            entr += prob * np.log(prob)
         doc_score[i] = entr
 
     sorted_doc_score = sorted(doc_score.items(), key=operator.itemgetter(1))
