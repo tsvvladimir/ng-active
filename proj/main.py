@@ -6,6 +6,7 @@ from minimum_margin import minimum_margin
 from maximum_entropy_simple_proba import maximum_entropy_simple_proba
 from maximum_entropy_onnevsrest_proba_log_regr import maximum_entropy_onnevsrest_proba_log_regr
 from minimum_margin_init import minimum_margin_init
+from minimum_margin_select_start_wn import minimum_margin_select_start_wn
 
 
 baseline()
@@ -13,6 +14,8 @@ baseline()
 #least_confident()
 
 minimum_margin()
+minimum_margin_select_start_wn()
+
 #minimum_margin_init()
 
 #maximum_entropy_simple_proba()

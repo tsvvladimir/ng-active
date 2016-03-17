@@ -14,3 +14,9 @@ import operator
 import math
 from sklearn.multiclass import OneVsRestClassifier
 from collections import *
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import linear_kernel
+from nltk.corpus import wordnet as wn
+import re
+from itertools import chain
+from sklearn.utils import shuffle

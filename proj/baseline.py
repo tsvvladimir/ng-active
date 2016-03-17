@@ -16,3 +16,7 @@ def baseline():
     print "baseline"
     print "(", len(twenty_test_target), ", ", cur_score, ")"
 
+    #count documents most similar to theme's name
+    #twenty_train_data and twenty_train_target
+    #theme names twenty_test.target_names
+
