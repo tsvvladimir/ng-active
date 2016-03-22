@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="792c6d35-57bc-4e0f-8b61-f102741e5680" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/baseline.py" afterPath="$PROJECT_DIR$/baseline.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/least_confident.py" afterPath="$PROJECT_DIR$/least_confident.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/maximum_entropy_onnevsrest_proba_log_regr.py" afterPath="$PROJECT_DIR$/maximum_entropy_onnevsrest_proba_log_regr.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/maximum_entropy_simple_proba.py" afterPath="$PROJECT_DIR$/maximum_entropy_simple_proba.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/minimum_margin.py" afterPath="$PROJECT_DIR$/minimum_margin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/minimum_margin_init.py" afterPath="$PROJECT_DIR$/minimum_margin_init.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/minimum_margin_select_start_wn.py" afterPath="$PROJECT_DIR$/minimum_margin_select_start_wn.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/random_sampling.py" afterPath="$PROJECT_DIR$/random_sampling.py" />
-    </list>
+    <list default="true" id="792c6d35-57bc-4e0f-8b61-f102741e5680" name="Default" comment="" />
     <ignored path="proj.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -401,7 +392,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4348404" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4348404" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
