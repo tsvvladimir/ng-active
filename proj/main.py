@@ -10,7 +10,7 @@ from minimum_margin_select_start_wn import minimum_margin_select_start_wn
 
 
 baseline()
-#random_sampling()
+random_sampling()
 #least_confident()
 
 minimum_margin()

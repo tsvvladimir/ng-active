@@ -9,7 +9,7 @@ def minimum_margin_select_start_wn():
     #range by minimum margin
     print "range by minimum margin select start wordnet"
     alpha = 100 #initial training set
-    betha = 30 #number of iteration
+    betha = 140 #number of iteration
     gamma = 50 #number of sampling
 
 
@@ -28,7 +28,9 @@ def minimum_margin_select_start_wn():
         for word in theme_words:
             syns = wn.synsets(word)
             sns = list(set(chain.from_iterable([word.lemma_names() for word in syns])))
-            theme_words = theme_words + sns
+            sns2 = list(set(chain.from_iterable([word.definition() for word in syns])))
+            sns3 = list(set(chain.from_iterable([word.examples() for word in syns])))
+            theme_words = theme_words + sns + sns2 + sns3
         #print theme_words
         aug_themes[i] = " ".join(theme_words)
     aug = aug_themes + twenty_train_data

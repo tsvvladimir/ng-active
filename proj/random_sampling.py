@@ -10,7 +10,7 @@ def random_sampling():
     #add random elements strategy
     print "random sampling solution"
     alpha = 100 #initial training set
-    betha = 10 #number of iteration
+    betha = 140 #number of iteration
     gamma = 50 #number of sampling
 
     twenty_cur_training_data = twenty_train_data[:alpha]
