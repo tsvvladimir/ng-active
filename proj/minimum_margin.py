@@ -19,7 +19,7 @@ def minimum_margin():
 
     text_clf.fit(twenty_cur_training_data, twenty_cur_training_target)
     predicted = text_clf.predict(twenty_test_data)
-    cur_score = f1_score(twenty_test_target, predicted, average='micro')
+    cur_score = f1_score(twenty_test_target, predicted, average='macro')
     print "(", len(twenty_cur_training_data), ", ", cur_score, ")"
 
     for t in range(1, betha):
@@ -58,6 +58,6 @@ def minimum_margin():
 
         text_clf.fit(twenty_cur_training_data, twenty_cur_training_target)
         predicted = text_clf.predict(twenty_test_data)
-        cur_score = f1_score(twenty_test_target, predicted, average='micro')
+        cur_score = f1_score(twenty_test_target, predicted, average='macro')
         print "(", len(twenty_cur_training_data), ", ", cur_score, ")"
 

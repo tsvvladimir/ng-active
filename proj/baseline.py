@@ -12,7 +12,7 @@ def baseline():
 
     text_clf.fit(twenty_train_data, twenty_train_target)
     predicted = text_clf.predict(twenty_test_data)
-    cur_score = f1_score(twenty_test_target, predicted, average='micro')
+    cur_score = f1_score(twenty_test_target, predicted, average='macro')
     print "baseline"
     print "(", len(twenty_test_target), ", ", cur_score, ")"
 
