@@ -12,13 +12,22 @@ from minimum_margin_select_start_wn_stemming import minimum_margin_select_start_
 
 
 baseline()
+
+
+
 random_sampling()
-#least_confident()
 
 minimum_margin()
-#minimum_margin_select_start_wn()
-#minimum_margin_select_start_wn_stemming()
+minimum_margin_select_start_wn()
+minimum_margin_select_start_wn_stemming()
 minimum_margin_stemming()
+
+
+
+
+
+#least_confident()
+
 
 #minimum_margin_init()
 

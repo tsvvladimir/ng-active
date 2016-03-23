@@ -29,10 +29,33 @@ def minimum_margin_select_start_wn():
         for word in theme_words:
             syns = wn.synsets(word)
             sns = list(set(chain.from_iterable([word.lemma_names() for word in syns])))
-            sns2 = list(set(chain.from_iterable([word.definition() for word in syns])))
+            sns2 = list([word.definition() for word in syns])
             sns3 = list(set(chain.from_iterable([word.examples() for word in syns])))
-            theme_words = theme_words + sns + sns2 + sns3
+            #print sns2
+            #add hyponyms
+            hypo = lambda s: s.hyponyms()
+            hypo_synsets = lambda syns: list(syns.closure(hypo))
+
+            my_hypo = list(set(chain.from_iterable([hypo_synsets(word) for word in syns])))
+            sns4 = []
+            if len(my_hypo) > 0:
+                sns41 = list(set(chain.from_iterable([word.lemma_names() for word in my_hypo])))
+                sns42 = list([word.definition() for word in my_hypo])
+                sns43 = list(set(chain.from_iterable([word.examples() for word in my_hypo])))
+                sns4 = sns4 + sns41 + sns42 + sns43
+                #print syns
+                #print my_hypo
+                #print sns41
+                #for word in my_hypo:
+                #    print "definition:", word.definition()
+                #print sns42
+                #print sns43
+                #print sns4
+
+
+            theme_words = theme_words + sns + sns2 + sns3 + sns4
         #print theme_words
+        #exit()
         aug_themes[i] = " ".join(theme_words)
     aug = aug_themes + twenty_train_data
     aug = help_conv.fit_transform(aug)

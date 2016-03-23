@@ -23,7 +23,7 @@ def minimum_margin_select_start_wn_stemming():
     #range by minimum margin
     print "range by minimum margin select start wordnet and stemmer"
     alpha = 100 #initial training set
-    betha = 15 #number of iteration
+    betha = 17 #number of iteration
     gamma = 50 #number of sampling
 
     #transform twenty_train_data and twenty_test_data
@@ -61,7 +61,7 @@ def minimum_margin_select_start_wn_stemming():
         for word in theme_words:
             syns = wn.synsets(word)
             sns = list(set(chain.from_iterable([word.lemma_names() for word in syns])))
-            sns2 = list(set(chain.from_iterable([word.definition() for word in syns])))
+            sns2 = list([word.definition() for word in syns])
             sns3 = list(set(chain.from_iterable([word.examples() for word in syns])))
             theme_words = theme_words + sns + sns2 + sns3
         #print theme_words

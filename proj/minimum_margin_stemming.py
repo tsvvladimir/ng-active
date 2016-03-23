@@ -24,7 +24,7 @@ def minimum_margin_stemming():
     #range by minimum margin
     print "range by minimum margin, stemming"
     alpha = 100 #initial training set
-    betha = 140 #number of iteration
+    betha = 17 #number of iteration
     gamma = 50 #number of sampling
 
 
