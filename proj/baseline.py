@@ -14,7 +14,7 @@ def baseline():
     predicted = text_clf.predict(twenty_test_data)
     cur_score = f1_score(twenty_test_target, predicted, average='macro')
     print "baseline"
-    print "(", len(twenty_test_target), ", ", cur_score, ")"
+    print "(", len(twenty_test_target), "; ", cur_score, ")"
 
     #count documents most similar to theme's name
     #twenty_train_data and twenty_train_target

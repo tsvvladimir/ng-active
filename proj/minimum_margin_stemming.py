@@ -1,24 +1,63 @@
 from setup_data import *
 
-def minimum_margin():
+def minimum_margin_stemming():
+
+
+    stemmer = PorterStemmer()
+
+    def stem_tokens(tokens, stemmer):
+        stemmed = []
+        for item in tokens:
+            stemmed.append(stemmer.stem(item))
+        return stemmed
+
+    def tokenize(text):
+        tokens = nltk.word_tokenize(text)
+        stems = stem_tokens(tokens, stemmer)
+        return stems
+
     text_clf = Pipeline([
-        ('vect', CountVectorizer()),
+        ('vect', CountVectorizer(tokenizer=tokenize, stop_words='english')),
         ('tfidf',TfidfTransformer()),
         ('clf', LinearSVC())
     ])
     #range by minimum margin
-    print "range by minimum margin"
+    print "range by minimum margin, stemming"
     alpha = 100 #initial training set
     betha = 140 #number of iteration
     gamma = 50 #number of sampling
 
-    twenty_cur_training_data = twenty_train_data[:alpha]
+
+
+
+    #transform twenty_train_data and twenty_test_data
+
+    transformed_twenty_train_data = []
+    transformed_twenty_test_data = []
+
+    replace_punctuation = string.maketrans(string.punctuation, ' '*len(string.punctuation)).decode("latin-1")
+
+    #print replace_punctuation
+
+
+    for item in twenty_train_data:
+        lowers = item.lower()
+        no_punctuation = lowers.translate(replace_punctuation)
+        transformed_twenty_train_data.append(no_punctuation)
+
+    for item in twenty_test_data:
+        lowers = item.lower()
+        no_punctuation = lowers.translate(replace_punctuation)
+        transformed_twenty_test_data.append(no_punctuation)
+
+
+    twenty_cur_training_data = transformed_twenty_train_data[:alpha]
     twenty_cur_training_target = twenty_train_target[:alpha]
-    twenty_unlabeled_data = twenty_train_data[alpha:]
+    twenty_unlabeled_data = transformed_twenty_train_data[alpha:]
     twenty_unlabeled_target = twenty_train_target[alpha:]
 
     text_clf.fit(twenty_cur_training_data, twenty_cur_training_target)
-    predicted = text_clf.predict(twenty_test_data)
+    predicted = text_clf.predict(transformed_twenty_test_data)
     cur_score = f1_score(twenty_test_target, predicted, average='macro')
     print "(", len(twenty_cur_training_data), "; ", cur_score, ")"
 
@@ -57,7 +96,7 @@ def minimum_margin():
         twenty_unlabeled_target = sample_target
 
         text_clf.fit(twenty_cur_training_data, twenty_cur_training_target)
-        predicted = text_clf.predict(twenty_test_data)
+        predicted = text_clf.predict(transformed_twenty_test_data)
         cur_score = f1_score(twenty_test_target, predicted, average='macro')
         print "(", len(twenty_cur_training_data), "; ", cur_score, ")"
 

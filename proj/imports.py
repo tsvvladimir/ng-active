@@ -20,3 +20,8 @@ from nltk.corpus import wordnet as wn
 import re
 from itertools import chain
 from sklearn.utils import shuffle
+import nltk
+import string
+import os
+from nltk.stem.porter import PorterStemmer
+from string import maketrans

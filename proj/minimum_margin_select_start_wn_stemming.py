@@ -1,21 +1,53 @@
 from setup_data import *
 
-def minimum_margin_select_start_wn():
+def minimum_margin_select_start_wn_stemming():
+
+    stemmer = PorterStemmer()
+
+    def stem_tokens(tokens, stemmer):
+        stemmed = []
+        for item in tokens:
+            stemmed.append(stemmer.stem(item))
+        return stemmed
+
+    def tokenize(text):
+        tokens = nltk.word_tokenize(text)
+        stems = stem_tokens(tokens, stemmer)
+        return stems
+
     text_clf = Pipeline([
-        ('vect', CountVectorizer()),
+        ('vect', CountVectorizer(tokenizer=tokenize, stop_words='english')),
         ('tfidf',TfidfTransformer()),
         ('clf', LinearSVC())
     ])
     #range by minimum margin
-    print "range by minimum margin select start wordnet"
+    print "range by minimum margin select start wordnet and stemmer"
     alpha = 100 #initial training set
     betha = 15 #number of iteration
     gamma = 50 #number of sampling
 
+    #transform twenty_train_data and twenty_test_data
 
+    transformed_twenty_train_data = []
+    transformed_twenty_test_data = []
+
+    replace_punctuation = string.maketrans(string.punctuation, ' '*len(string.punctuation)).decode("latin-1")
+
+    #print replace_punctuation
+
+
+    for item in twenty_train_data:
+        lowers = item.lower()
+        no_punctuation = lowers.translate(replace_punctuation)
+        transformed_twenty_train_data.append(no_punctuation)
+
+    for item in twenty_test_data:
+        lowers = item.lower()
+        no_punctuation = lowers.translate(replace_punctuation)
+        transformed_twenty_test_data.append(no_punctuation)
 
     help_conv = Pipeline([
-        ('vect', CountVectorizer()),
+        ('vect', CountVectorizer(tokenizer=tokenize, stop_words='english')),
         ('tfidf', TfidfTransformer())
     ])
 
@@ -34,7 +66,7 @@ def minimum_margin_select_start_wn():
             theme_words = theme_words + sns + sns2 + sns3
         #print theme_words
         aug_themes[i] = " ".join(theme_words)
-    aug = aug_themes + twenty_train_data
+    aug = aug_themes + transformed_twenty_train_data
     aug = help_conv.fit_transform(aug)
 
     cos_sims = []
@@ -69,12 +101,12 @@ def minimum_margin_select_start_wn():
 
     for lst in docs_idx_take:
         for idx in lst:
-            twenty_cur_training_data.append(twenty_train_data[idx])
+            twenty_cur_training_data.append(transformed_twenty_train_data[idx])
             twenty_cur_training_target.append(twenty_train_target[idx])
 
-    for i in range(0, len(twenty_train_data)):
+    for i in range(0, len(transformed_twenty_train_data)):
         if i not in [item for sublist in docs_idx_take for item in sublist]:
-            twenty_unlabeled_data.append(twenty_train_data[i])
+            twenty_unlabeled_data.append(transformed_twenty_train_data[i])
             twenty_unlabeled_target.append(twenty_train_target[i])
 
     #twenty_cur_training_data = twenty_train_data[:alpha]
@@ -88,7 +120,7 @@ def minimum_margin_select_start_wn():
 
 
     text_clf.fit(twenty_cur_training_data, twenty_cur_training_target)
-    predicted = text_clf.predict(twenty_test_data)
+    predicted = text_clf.predict(transformed_twenty_test_data)
     cur_score = f1_score(twenty_test_target, predicted, average='macro')
     print "(", len(twenty_cur_training_data), "; ", cur_score, ")"
 
@@ -127,7 +159,7 @@ def minimum_margin_select_start_wn():
         twenty_unlabeled_target = sample_target
 
         text_clf.fit(twenty_cur_training_data, twenty_cur_training_target)
-        predicted = text_clf.predict(twenty_test_data)
+        predicted = text_clf.predict(transformed_twenty_test_data)
         cur_score = f1_score(twenty_test_target, predicted, average='macro')
         print "(", len(twenty_cur_training_data), "; ", cur_score, ")"
 
