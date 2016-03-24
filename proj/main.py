@@ -26,10 +26,10 @@ minimum_margin_stemming()
 
 
 
-#least_confident()
+least_confident()
 
+minimum_margin_init()
 
-#minimum_margin_init()
+maximum_entropy_simple_proba()
 
-#maximum_entropy_simple_proba()
-#maximum_entropy_onnevsrest_proba_log_regr()
+maximum_entropy_onnevsrest_proba_log_regr()

@@ -23,7 +23,7 @@ def minimum_margin_select_start_wn_stemming():
     #range by minimum margin
     print "range by minimum margin select start wordnet and stemmer"
     alpha = 100 #initial training set
-    betha = 17 #number of iteration
+    betha = 140 #number of iteration
     gamma = 50 #number of sampling
 
     #transform twenty_train_data and twenty_test_data

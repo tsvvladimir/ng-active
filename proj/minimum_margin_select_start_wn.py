@@ -9,7 +9,7 @@ def minimum_margin_select_start_wn():
     #range by minimum margin
     print "range by minimum margin select start wordnet"
     alpha = 100 #initial training set
-    betha = 15 #number of iteration
+    betha = 140 #number of iteration
     gamma = 50 #number of sampling
 
 

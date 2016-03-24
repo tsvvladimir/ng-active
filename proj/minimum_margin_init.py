@@ -9,7 +9,7 @@ def minimum_margin_init():
     #range by minimum margin
     print "range by minimum margin init"
     alpha = 50 #initial training set
-    betha = 30 #number of iteration
+    betha = 140 #number of iteration
     gamma = 50 #number of sampling
 
     #twenty_cur_training_data = twenty_train_data[:alpha]
